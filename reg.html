@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registr Face</title>
+<!-- Source: https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/ -->
+<script>
+	let dropArea = document.getElementById('drop-area')
+
+	;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, preventDefaults, false)
+	})
+
+	function preventDefaults (e) {
+	  e.preventDefault()
+	  e.stopPropagation()
+	}
+	;['dragenter', 'dragover'].forEach(eventName => {
+  dropArea.addEventListener(eventName, highlight, false)
+})
+
+;['dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, unhighlight, false)
+})
+
+function highlight(e) {
+  dropArea.classList.add('highlight')
+}
+
+function unhighlight(e) {
+  dropArea.classList.remove('highlight')
+}
+dropArea.addEventListener('drop', handleDrop, false)
+
+function handleDrop(e) {
+  let dt = e.dataTransfer
+  let files = dt.files
+
+  handleFiles(files)
+}
+function handleFiles(files) {
+  files = [...files]
+  files.forEach(uploadFile)
+  files.forEach(previewFile)
+}
+function uploadFile(file) {
+  let url = 'YOUR URL HERE'
+  let formData = new FormData()
+
+  formData.append('file', file)
+
+  fetch(url, {
+    method: 'POST',
+    body: formData
+  })
+  .then(() => { /* Done. Inform the user */ })
+  .catch(() => { /* Error. Inform the user */ })
+}
+function uploadFile(file) {
+  var url = 'YOUR URL HERE'
+  var xhr = new XMLHttpRequest()
+  var formData = new FormData()
+  xhr.open('POST', url, true)
+
+  xhr.addEventListener('readystatechange', function(e) {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      // Done. Inform the user
+    }
+    else if (xhr.readyState == 4 && xhr.status != 200) {
+      // Error. Inform the user
+    }
+  })
+
+  formData.append('file', file)
+  xhr.send(formData)
+}
+function previewFile(file) {
+  let reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onloadend = function() {
+    let img = document.createElement('img')
+    img.src = reader.result
+    document.getElementById('gallery').appendChild(img)
+  }
+}
+let uploadProgress = []
+
+let progressBar = document.getElementById('progress-bar')
+function initializeProgress(numFiles) {
+  progressBar.value = 0
+  uploadProgress = []
+
+  for(let i = numFiles; i > 0; i--) {
+    uploadProgress.push(0)
+  }
+}
+
+function updateProgress(fileNumber, percent) {
+  uploadProgress[fileNumber] = percent
+  let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
+  progressBar.value = total
+}
+
+function handleFiles(files) {
+  files = [...files]
+  initializeProgress(files.length) // <- Add this line
+  files.forEach(uploadFile)
+  files.forEach(previewFile)
+}
+
+function uploadFile(file, i) { // <- Add `i` parameter
+  var url = 'YOUR URL HERE'
+  var xhr = new XMLHttpRequest()
+  var formData = new FormData()
+  xhr.open('POST', url, true)
+
+  // Add following event listener
+  xhr.upload.addEventListener("progress", function(e) {
+    updateProgress(i, (e.loaded * 100.0 / e.total) || 100)
+  })
+
+  xhr.addEventListener('readystatechange', function(e) {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      // Done. Inform the user
+    }
+    else if (xhr.readyState == 4 && xhr.status != 200) {
+      // Error. Inform the user
+    }
+  })
+
+  formData.append('file', file)
+  xhr.send(formData)
+}
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+<style id="applicationStylesheet" type="text/css">
+body {
+background-image: url('reg2.png');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+font-family: Arial, Helvetica, sans-serif;
+}
+.center {
+	margin-left: 470px;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 0px;
+	width: 20%;
+	position: static;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+#back{
+	position: fixed;
+ 	top: 10px;
+  left: 15px;
+	width: 50px;
+	z-index: 1;
+}
+#drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  width: 780px;
+	height: 280px;
+  font-family: sans-serif;
+  margin: 100px auto;
+  padding: 20px;
+	margin-top: 50px;
+	background-color: #F5F6FA;
+	background-image: url("upload.png");
+	background-repeat: no-repeat;
+	background-position: 250px 30px;
+}
+#drop-area.highlight {
+  border-color: purple;
+	border-image-width: 500px;
+}
+.my-form {
+  margin-bottom: 300px;
+	margin-top: 220px;
+}
+#gallery {
+  margin-top: 10px;
+}
+#gallery img {
+  width: 150px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.button {
+  display: inline-block;
+  padding: 10px;
+  background: #687DDB;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+	margin-left: 320px;
+	margin-bottom: 40px;
+}
+.button:hover {
+  background: #ddd;
+}
+#fileElem {
+  display: none;
+}
+#menu{
+	position: fixed;
+ 	top: 15px !important;
+  right: 30px !important;
+	z-index: 1;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+	<div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <a href="menu.html">Menu</a>
+	  <a href="stream.html">Live Stream</a>
+	  <a href="pgallery.html">Photo Gallery</a>
+		<a href="vgallery.html">Video Gallery</a>
+		<a href="reg.html">Registr Face</a>
+		<a href="log.html">Log</a>
+		<a href="settings.html">Settings</a>
+	  <a href="SafeBell.html">Sign out</a>
+	</div>
+	<span id="menu" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+<div><img class="center" src="reg_txt2.png" srcset="reg_txt.png 1x, reg_txt2.png 2x"></div>
+<div id="drop-area">
+  <form class="my-form">
+    <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+    <label class="button" for="fileElem">Browse Files</label>
+		<progress id="progress-bar" max=100 value=0></progress>
+  </form>
+	<div id="gallery"></div>
+</div>
+<a href="menu.html">
+<img id="back" src="back_txt2.png" srcset="back_txt.png 1x, back_txt2.png 2x">
+</a>
+
+</body>
+</html>

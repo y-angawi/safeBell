@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery</title>
+<style id="applicationStylesheet" type="text/css">
+body {
+background-image: url('background2.png');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+font-family: Arial, Helvetica, sans-serif;
+}
+.center {
+	margin-left: 700px;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	width: 150px;
+	position: fixed;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+#back{
+	position: fixed;
+ 	top: 10px;
+  left: 15px;
+	width: 50px;
+}
+#btns{
+	margin-left: 620px;
+	margin-right: auto;
+	margin-top: 150px;
+	position: fixed;
+}
+#menu{
+	position: fixed;
+ 	top: 15px !important;
+  right: 30px !important;
+	z-index: 1;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+<script type="text/javascript">
+function openNav() {
+	document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+	document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+</head>
+<body>
+	<div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <a href="menu.html">Menu</a>
+	  <a href="stream.html">Live Stream</a>
+	  <a href="pgallery.html">Photo Gallery</a>
+		<a href="vgallery.html">Video Gallery</a>
+		<a href="reg.html">Registr Face</a>
+		<a href="log.html">Log</a>
+		<a href="settings.html">Settings</a>
+	  <a href="SafeBell.html">Sign out</a>
+	</div>
+	<span id="menu" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+	<img class="center" src="gallery_txt2.png" srcset="gallery_txt.png 1x, gallery_txt2.png 2x">
+<div id="btns">
+	<a href="pgallery.html">
+	<img src="pgallery_btn2.png" srcset="pgallery_btn.png 1x, pgallery_btn2.png 2x" style="width: 300px;">
+	</a>
+	<a href="vgallery.html">
+	<img src="vgallery_btn2.png" srcset="vgallery_btn.png 1x, vgallery_btn2.png 2x" style="margin-top: 20px; width: 300px;">
+  </a>
+	</div>
+	<a href="menu.html">
+	<img id="back" src="back_txt2.png" srcset="back_txt.png 1x, back_txt2.png 2x">
+	</a>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Gallery</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="pgallery/css/jquery.donkeyGallery.css">
+<link rel="stylesheet" href="pgallery/css/jquery.fancybox.css">
+
+<!-- TRY THE PACKED AND MIN CSS (with gallery and fancybox style in one single file)
+<link rel="stylesheet" href="dnk-gallery/css/jquery.donkeyGallery.packed.min.css">
+-->
+
+<style id="applicationStylesheet" type="text/css">
+body {
+background-image: url('reg2.png');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+font-family: Arial, Helvetica, sans-serif;
+}
+#back{
+	position: fixed;
+ 	top: 10px;
+  left: 15px;
+	width: 50px;
+	z-index: 1;
+}
+.center {
+	margin-left: 470px;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 0px;
+	width: 20%;
+}
+h1 {
+		font-size: 5em;
+		padding: 0;
+		margin: 40px 0 0 0;
+		font-weight: 300;
+}
+h2 {
+		font-size: 3em;
+		padding: 0 0 20px 0;
+		margin: 0 0 40px 0;
+		font-weight: 300;
+		color: #ccc;
+		border-bottom: 1px solid #ccc;
+}
+#demos-wrapper {
+		width: 70%;
+		max-width: 1300px;
+		margin: 0 auto;
+}
+.demo {
+		margin-bottom: 40px;
+}
+#menu{
+	position: fixed;
+ 	top: 15px !important;
+  right: 30px !important;
+	z-index: 1;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+	<div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <a href="menu.html">Menu</a>
+	  <a href="stream.html">Live Stream</a>
+	  <a href="pgallery.html">Photo Gallery</a>
+		<a href="vgallery.html">Video Gallery</a>
+		<a href="reg.html">Registr Face</a>
+		<a href="log.html">Log</a>
+		<a href="settings.html">Settings</a>
+	  <a href="SafeBell.html">Sign out</a>
+	</div>
+	<span id="menu" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+	<a href="menu.html">
+	<img id="back" src="back_txt2.png" srcset="back_txt.png 1x, back_txt2.png 2x">
+	</a>
+<div><img class="center" src="pgallary_txt2.png" srcset="pgallary_txt.png 1x, pgallary_txt2.png 2x"></div>
+<section id="demos-wrapper">
+		<div class="demo" id="demo-1">
+		</div>
+
+		<div class="demo" id="demo-2">
+		</div>
+
+		<div class="demo" id="demo-3">
+		</div>
+</section>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="pgallery/js/helper-plugins/jquery.fancybox.js"></script>
+<script src="pgallery/js/helper-plugins/easy-pagination.js"></script>
+<script src="pgallery/js/jquery.donkeyGallery.js"></script>
+<!--Source: https://www.codexworld.com/create-dynamic-image-gallery-jquery-php-mysql/ -->
+<!-- TRY THE PACKED AND MIN PLUGIN (with gallery, easy paginate and fancybox plugins in one single file)
+
+<script src="dnk-gallery/js/jquery.donkeyGallery.packed.min.js"></script>
+
+-->
+<script>
+
+$(function() {
+
+				$("#demo-1").donkeyGallery({
+						galleryPath : "pgallery/images/gallery-demo-1/",
+						subdomain: "",
+						style: "squared",
+						color: "gray",
+						thumbs: {
+								thumbW: 100,
+								thumbH: 100,
+								thumbsGen: false
+						},
+				});
+
+				$("#demo-2").donkeyGallery({
+						galleryPath : "pgallery/images/gallery-demo-2/",
+						subdomain: "",
+						style: "tin-squared",
+						color: "gray",
+						thumbs: {
+								thumbW: 100,
+								thumbH: 100,
+								thumbsGen: false
+						},
+						fancybox : {
+								active: true,
+								galleryGroup: 'demo2'
+						},
+						pagination: {
+								active: true,
+								pageItems: 5
+						}
+				});
+
+				$("#demo-3").donkeyGallery({
+						galleryPath : "pgallery/images/gallery-demo-3/",
+						subdomain: "",
+						style: "circle",
+						color: "white",
+						thumbs: {
+								thumbW: 100,
+								thumbH: 100,
+								thumbsGen: false
+						},
+						fancybox : {
+								active: true,
+								galleryGroup: 'demo2'
+						},
+						pagination: {
+								active: true,
+								pageItems: 5
+						}
+				});
+
+});
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+</body>
+</html>

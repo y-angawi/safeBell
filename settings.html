@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="pgallery/css/jquery.donkeyGallery.css">
+<link rel="stylesheet" href="pgallery/css/jquery.fancybox.css">
+
+<style id="applicationStylesheet" type="text/css">
+body{
+	background-image: url('reg2.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#back{
+	position: fixed;
+ 	top: 10px;
+  left: 15px;
+	width: 50px;
+	z-index: 1;
+}
+.center {
+	margin-left: 470px;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 0px;
+	width: 20%;
+}
+.list-group-item {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border: 1px solid #e7e7e7 !important;
+    border-radius: 0 !important;
+    color: #404040;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.125);
+}
+.list-group-item.active:not(.disabled)::before {
+    background-color: #ac32e4;
+}
+
+.list-group-item::before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background-color: transparent;
+    content: '';
+}
+.row {
+	margin-top: 20px;
+}
+/* #hover{
+	height: 20px;
+} */
+#hover:hover{
+	border-color: #e7e7e7;
+	background: #fff;
+	color: #ac32e4;
+	cursor: default;
+	pointer-events: none;
+}
+#header{
+	display: inline-block;
+	margin-top: -1px;
+	margin-right: 8px;
+	font-size: 2.2em;
+	vertical-align: middle;
+}
+.list-group-item active{
+	left: 252px;
+}
+.wizard{
+	z-index: 0;
+}
+/* The switch - the box around the slider */
+#bell-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+	left: 255px;
+	top: center;
+	z-index: 3;
+}
+/* Hide default HTML checkbox */
+#bell-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#motion-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+	left: 215px;
+	top: center;
+	z-index: 3;
+}
+/* Hide default HTML checkbox */
+#motion-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#facialF-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+	left: 200px;
+	top: center;
+	z-index: 3;
+}
+/* Hide default HTML checkbox */
+#facialF-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#motionF-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+	left: 213px;
+	top: center;
+	z-index: 3;
+}
+/* Hide default HTML checkbox */
+#motionF-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#audio-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+	left: 300px;
+	top: center;
+	z-index: 3;
+}
+/* Hide default HTML checkbox */
+#audio-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#video-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+	left: 300px;
+	top: center;
+	z-index: 3;
+}
+/* Hide default HTML checkbox */
+#video-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+#menu{
+	position: fixed;
+ 	top: 15px !important;
+  right: 30px !important;
+	z-index: 1;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+<script type="text/javascript">
+document.getElementById("bell-switch").addEventListener("click", myBellFunction);
+document.getElementById("motion-switch").addEventListener("click", myMotionFunction);
+document.getElementById("facialF-switch").addEventListener("click", myFacialFFunction);
+document.getElementById("motionF-switch").addEventListener("click", myMotionFFunction);
+document.getElementById("audio-switch").addEventListener("click", myAudioFunction);
+document.getElementById("video-switch").addEventListener("click", myVideoFunction);
+
+function myBellFunction() {
+alert("myBellFunction");
+}
+
+function myMotionFunction() {
+alert("myMotionFunction");
+}
+
+function myFacialFFunction() {
+alert("myFacialFFunction");
+}
+
+function myMotionFFunction() {
+alert("myMotionFFunction");
+}
+
+function myAudioFunction() {
+alert("myAudioFunction");
+}
+
+function myVideoFunction() {
+alert("myVideoFunction");
+}
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+</head>
+<body>
+	<div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <a href="menu.html">Menu</a>
+	  <a href="stream.html">Live Stream</a>
+	  <a href="pgallery.html">Photo Gallery</a>
+		<a href="vgallery.html">Video Gallery</a>
+		<a href="reg.html">Registr Face</a>
+		<a href="log.html">Log</a>
+		<a href="settings.html">Settings</a>
+	  <a href="SafeBell.html">Sign out</a>
+	</div>
+	<span id="menu" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+	<a href="menu.html">
+	<img id="back" src="back_txt2.png" srcset="back_txt.png 1x, back_txt2.png 2x">
+	</a>
+	<div><img class="center" src="settings_txt2.png" srcset="settings_txt.png 1x, settings_txt2.png 2x"></div>
+	<div class="container mt-5">
+	    <div class="row">
+	        <div class="col-lg-4 pb-5">
+
+	            <div class="wizard">
+	                <nav class="list-group list-group-flush">
+	                    <div id="hover" class="list-group-item" href="#">
+	                        <div class="d-flex justify-content-between align-items-center ">
+	                            <div id="header"><b><i class="fe-icon-shopping-bag mr-1 text-muted">Notifications</i>
+	                                <div  class="d-inline-block font-weight-medium text-uppercase"></div>
+	                            </div>
+	                        </div>
+	                    </div>
+											<div class="list-group-item active" href="#">
+												<i id="hover" class="d-inline-block font-weight-medium text-uppercase">Bell Button</i>
+												<label id="bell-switch">
+													<input type="checkbox">
+													<span class="slider round"></span>
+												</label>
+											</div>
+											<div class="list-group-item active" href="#">
+												<i id="hover" class="fe-icon-map-pin text-muted">Motion Detection</i>
+												<label id="motion-switch">
+													<input type="checkbox">
+													<span class="slider round"></span>
+												</label>
+											</div>
+	                    <div id="hover" class="list-group-item" href="#">
+												<div class="d-flex justify-content-between align-items-center ">
+														<div id="header"><b><i class="fe-icon-shopping-bag mr-1 text-muted">Functionality</i>
+																<div  class="d-inline-block font-weight-medium text-uppercase"></div>
+														</div>
+												</div>
+	                    </div>
+											<div class="list-group-item active" href="#">
+												<i id="hover" class="d-inline-block font-weight-medium text-uppercase">Facial Recognition</i>
+												<label id="facialF-switch">
+													<input type="checkbox">
+													<span class="slider round"></span>
+												</label>
+											</div>
+											<div class="list-group-item active" href="#">
+												<i id="hover" class="fe-icon-map-pin text-muted">Motion Detection</i>
+												<label id="motionF-switch">
+													<input type="checkbox">
+													<span class="slider round"></span>
+												</label>
+											</div>
+	                    <div id="hover" class="list-group-item" href="#">
+												<div class="d-flex justify-content-between align-items-center ">
+														<div id="header"><i class="fe-icon-shopping-bag mr-1 text-muted">Others</i>
+																<div  class="d-inline-block font-weight-medium text-uppercase"></div>
+														</div>
+												</div>
+	                    </div>
+											<div class="list-group-item active" href="#">
+												<i id="hover" class="d-inline-block font-weight-medium text-uppercase">Audio</i>
+												<label id="audio-switch">
+													<input type="checkbox">
+													<span class="slider round"></span>
+												</label>
+											</div>
+											<div class="list-group-item active" href="#">
+												<i id="hover" class="fe-icon-map-pin text-muted">Video</i>
+												<label id="video-switch">
+													<input type="checkbox">
+													<span class="slider round"></span>
+												</label>
+											</div>
+	                </nav>
+	            </div>
+	        </div>
+
+	    </div>
+	</div>
+
+</body>
+</html>

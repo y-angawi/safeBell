@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stream</title>
+<script>
+// -- Create a MediaSource and attach it to the video (We already learned about that) --
+
+const videoTag = document.getElementById("my-video");
+const myMediaSource = new MediaSource();
+const url = URL.createObjectURL(myMediaSource);
+videoTag.src = url;
+
+// 1. add source buffers
+
+const audioSourceBuffer = myMediaSource
+.addSourceBuffer('audio/mp4; codecs="mp4a.40.2"');
+const videoSourceBuffer = myMediaSource
+.addSourceBuffer('video/mp4; codecs="avc1.64001e"');
+
+// 2. download and add our audio/video to the SourceBuffers
+
+// for the audio SourceBuffer
+fetch("http://server.com/audio.mp4").then(function(response) {
+// The data has to be a JavaScript ArrayBuffer
+return response.arrayBuffer();
+}).then(function(audioData) {
+audioSourceBuffer.appendBuffer(audioData);
+});
+
+// the same for the video SourceBuffer
+fetch("http://server.com/video.mp4").then(function(response) {
+// The data has to be a JavaScript ArrayBuffer
+return response.arrayBuffer();
+}).then(function(videoData) {
+videoSourceBuffer.appendBuffer(videoData);
+});
+function mydial(){
+	alert("alert alert");
+}
+function hungup(){
+	alert("alert alert");
+}
+function rec(){
+	alert("alert alert");
+}
+function stop(){
+	alert("alert alert");
+}
+function pic(){
+	alert("alert alert");
+}
+function open(){
+	alert("alert alert");
+}
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+<style id="applicationStylesheet" type="text/css">
+body {
+  font-family: "Lato", sans-serif;
+}
+.center {
+	margin-left: 700px;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	width: 150px;
+	position: fixed;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+#signout{
+	position: fixed;
+ 	top: 15px;
+  right: 9px;
+	width: 70px;
+	z-index: 1;
+}
+#back{
+	position: fixed;
+ 	top: 15px;
+  left: 15px;
+	width: 50px;
+	z-index: 1;
+}
+#dial{
+	position: fixed;
+ 	bottom: 40px;
+  left: 50px;
+	width: 50px;
+	z-index: 1;
+}
+#hungup{
+	position: fixed;
+ 	bottom: 40px;
+  left: 130px;
+	width: 50px;
+	z-index: 1;
+}
+#rec{
+	position: fixed;
+ 	bottom: 40px;
+  left: 230px;
+	width: 50px;
+	z-index: 1;
+}
+#stop{
+	position: fixed;
+ 	bottom: 40px;
+  left: 350px;
+	width: 50px;
+	z-index: 1;
+}
+#pic{
+	position: fixed;
+ 	bottom: 40px;
+  right: 90px;
+	width: 50px;
+	z-index: 1;
+}
+#open{
+	position: fixed;
+ 	bottom: 40px;
+  right: 15px;
+	width: 50px;
+	z-index: 1;
+}
+.container{
+    position: relative;
+}
+
+.container>.player-buttons{
+    height: 128px;
+    left: 50%;
+    margin: -64px 0 0 -64px;
+    position: absolute;
+    top: 50%;
+    width: 128px;
+    z-index: 1;
+		background: url('signout_txt2.png') center center no-repeat;
+}
+#menu{
+	position: fixed;
+ 	top: 15px !important;
+  right: 30px !important;
+	z-index: 1;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+	<div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <a href="menu.html">Menu</a>
+	  <a href="stream.html">Live Stream</a>
+	  <a href="pgallery.html">Photo Gallery</a>
+		<a href="vgallery.html">Video Gallery</a>
+		<a href="reg.html">Registr Face</a>
+		<a href="log.html">Log</a>
+		<a href="settings.html">Settings</a>
+	  <a href="SafeBell.html">Sign out</a>
+	</div>
+	<span id="menu" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+	<div class="container">
+    <video src="some_video.mp4" width="1080px" height="520px" />
+    <div class="player-buttons"></div>
+</div>
+<a href="menu.html">
+<img id="back" src="back_txt2.png" srcset="back_txt.png 1x, back_txt2.png 2x">
+</a>
+<input id="dial" type="image" src="dial_btn2.png" alt="Submit" onclick="mydial()">
+<input id="hungup" type="image" src="hungup_btn2.png" alt="Submit" onclick="hungup()">
+<input id="rec" type="image" src="rec_btn2.png" alt="Submit" onclick="rec()">
+<input id="stop" type="image" src="stop_btn2.png" alt="Submit" onclick="stop()">
+<input id="pic" type="image" src="pic_btn2.png" alt="Submit" onclick="pic()">
+<input id="open" type="image" src="open_btn2.png" alt="Submit" onclick="open()">
+
+</body>
+</html>
